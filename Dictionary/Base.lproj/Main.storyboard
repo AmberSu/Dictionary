@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,127 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Dictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English - Norwegian Dictionary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uyG-pg-dg9">
+                                <rect key="frame" x="35.5" y="65" width="304.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <color key="textColor" red="0.15277239680290222" green="0.28408798575401306" blue="0.9696003794670105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add English word: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCL-l5-upW">
+                                <rect key="frame" x="116.5" y="177.5" width="142" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Norwegian word: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxp-jt-NNJ">
+                                <rect key="frame" x="103" y="314" width="169" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q1g-ez-MQr">
+                                <rect key="frame" x="87.5" y="351.5" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MFt-bR-FG1"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="englandsflag" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-F3-ncF">
+                                <rect key="frame" x="160" y="130.5" width="55" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="T77-6d-H9H"/>
+                                    <constraint firstAttribute="width" constant="55" id="x5o-rJ-Shn"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="norwaysflag" translatesAutoresizingMaskIntoConstraints="NO" id="wYL-8C-dzH">
+                                <rect key="frame" x="160" y="267" width="55" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="Kus-to-353"/>
+                                    <constraint firstAttribute="height" constant="39" id="rPo-aw-Fhv"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sTt-bT-7MS">
+                                <rect key="frame" x="87.5" y="215" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Cah-2K-ACC"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="vTG-Si-ysU">
+                                <rect key="frame" x="102" y="441" width="170" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-xg-eVe">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="34"/>
+                                        <color key="backgroundColor" red="0.15277239679999999" green="0.2840879858" blue="0.9696003795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveWordsToDictionary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5LT-Ha-2Vu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyk-TS-qoL">
+                                        <rect key="frame" x="115" y="0.0" width="55" height="34"/>
+                                        <color key="backgroundColor" red="0.15277239679999999" green="0.2840879858" blue="0.9696003795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="tintColor" red="0.19502317999999999" green="0.17502678399999999" blue="0.42137928299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title=" Fetch ">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fetchDataFromDictionary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5yS-Hf-yIL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EXI-F3-ncF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1nj-27-uEd"/>
+                            <constraint firstItem="uyG-pg-dg9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="Ery-42-EaS"/>
+                            <constraint firstItem="iCL-l5-upW" firstAttribute="top" secondItem="EXI-F3-ncF" secondAttribute="bottom" constant="8" id="HVF-q6-NOH"/>
+                            <constraint firstItem="wYL-8C-dzH" firstAttribute="top" secondItem="sTt-bT-7MS" secondAttribute="bottom" constant="22" id="Jxe-xB-56k"/>
+                            <constraint firstItem="bxp-jt-NNJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LLM-ei-uvu"/>
+                            <constraint firstItem="sTt-bT-7MS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TlX-jG-y7N"/>
+                            <constraint firstItem="iCL-l5-upW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WfO-y9-T9h"/>
+                            <constraint firstItem="vTG-Si-ysU" firstAttribute="top" secondItem="q1g-ez-MQr" secondAttribute="bottom" constant="60" id="WsK-0E-9vl"/>
+                            <constraint firstItem="q1g-ez-MQr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fWP-ou-8CH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vTG-Si-ysU" secondAttribute="bottom" constant="20" id="fY1-Wf-FZ3"/>
+                            <constraint firstItem="wYL-8C-dzH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g28-P6-qHb"/>
+                            <constraint firstItem="EXI-F3-ncF" firstAttribute="top" secondItem="uyG-pg-dg9" secondAttribute="bottom" constant="40" id="iy4-u6-vT8"/>
+                            <constraint firstItem="bxp-jt-NNJ" firstAttribute="top" secondItem="wYL-8C-dzH" secondAttribute="bottom" constant="8" id="ojR-05-r2c"/>
+                            <constraint firstItem="sTt-bT-7MS" firstAttribute="top" secondItem="iCL-l5-upW" secondAttribute="bottom" constant="17" id="ukt-fC-AKp"/>
+                            <constraint firstItem="uyG-pg-dg9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xBO-WH-WIi"/>
+                            <constraint firstItem="q1g-ez-MQr" firstAttribute="top" secondItem="bxp-jt-NNJ" secondAttribute="bottom" constant="17" id="yse-WR-soV"/>
+                            <constraint firstItem="vTG-Si-ysU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-0.5" id="zcI-EY-Xjv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="englishTextField" destination="sTt-bT-7MS" id="eZv-Fy-qrf"/>
+                        <outlet property="fetchButton" destination="Wyk-TS-qoL" id="69Y-nT-fHe"/>
+                        <outlet property="norwegianTextField" destination="q1g-ez-MQr" id="Qn1-1R-hRu"/>
+                        <outlet property="saveButton" destination="8bF-xg-eVe" id="rcn-4Y-4Yt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="englandsflag" width="301" height="180"/>
+        <image name="norwaysflag" width="275" height="200"/>
+    </resources>
 </document>
