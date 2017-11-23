@@ -70,7 +70,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="vTG-Si-ysU">
-                                <rect key="frame" x="102" y="441" width="170" height="34"/>
+                                <rect key="frame" x="102" y="441.5" width="170" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-xg-eVe">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="34"/>

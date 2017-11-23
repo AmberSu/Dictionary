@@ -19,6 +19,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var fetchButton: UIButton!
     
+    var words: [NSManagedObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         englishTextField.delegate = self
@@ -32,11 +34,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveWordsToDictionary(_ sender: UIButton) {
         guard let englishWord = englishTextField.text, let norwegianWord =
             norwegianTextField.text, englishWord != "", norwegianWord != "" else {
-                let alert = UIAlertController(title: "Empty text field", message: "Please type a word into all text fields", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .`default`, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                sendAlert(title: "Empty text field", message: "Please type a word into all text fields", buttonTitle: "OK")
                 return
         }
+        update(englishWord, norwegianWord)
         save(englishWord, norwegianWord)
         englishTextField.text = ""
         norwegianTextField.text = ""
@@ -46,7 +47,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         fetchData()
     }
     
-    private func formatButton(_ button: UIButton) {
+    func formatButton(_ button: UIButton) {
         button.contentEdgeInsets.bottom = 24
         button.contentEdgeInsets.top = 24
         button.contentEdgeInsets.left = 10
@@ -54,9 +55,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = 35
     }
     
-    // MARK: CoreData methods
+    // MARK: Method to send an alert
     
-    var words: [NSManagedObject] = []
+    func sendAlert(title: String, message: String, buttonTitle: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .`default`, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: CoreData methods
     
     func save(_ englishWord: String, _ norwegianWord: String) {
         guard let appDelegate =
@@ -83,6 +90,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func update(_ englishWord: String, _ norwegianWord: String) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        for word in words {
+            if let english = word.value(forKey: "english") as! String?, let norwegian = word.value(forKey: "norwegian") as! String? {
+                
+                if english == englishWord || norwegian == norwegianWord {
+                    word.setValue(englishWord, forKey: "english")
+                    word.setValue(norwegianWord, forKey: "norwegian")
+                    sendAlert(title: "Word Update", message: "This word was updated", buttonTitle: "OK")
+                    
+                    do {
+                        try managedContext.save()
+                        words.append(word)
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
+                    }
+                }
+            }
+        }
+    }
+    
     func fetchData() {
         var wordsDict = [String:String]()
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -96,11 +129,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         for word in words {
             if let english = word.value(forKey: "english") as! String?, let norwegian = word.value(forKey: "norwegian") as! String? {
-                    wordsDict[english] = norwegian
-            }
+                wordsDict[english] = norwegian
         }
-        print(wordsDict)
     }
+        print(wordsDict)
+}
     
     // MARK: UITextField methods
     
