@@ -27,15 +27,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         formatButton(fetchButton)
     }
     
-     // MARK: UIButton methods
+    // MARK: UIButton methods
     
     @IBAction func saveWordsToDictionary(_ sender: UIButton) {
         guard let englishWord = englishTextField.text, let norwegianWord =
-        norwegianTextField.text, englishWord != "", norwegianWord != "" else {
-            let alert = UIAlertController(title: "Empty text field", message: "Please type a word into all text fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .`default`, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
+            norwegianTextField.text, englishWord != "", norwegianWord != "" else {
+                let alert = UIAlertController(title: "Empty text field", message: "Please type a word into all text fields", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .`default`, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
         }
         save(englishWord, norwegianWord)
         englishTextField.text = ""
@@ -54,7 +54,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = 35
     }
     
-     // MARK: Core Data methods
+    // MARK: CoreData methods
+    
+    var words: [NSManagedObject] = []
     
     func save(_ englishWord: String, _ norwegianWord: String) {
         guard let appDelegate =
@@ -68,24 +70,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                        in: managedContext) {
             let word = NSManagedObject(entity: entity,
                                        insertInto: managedContext)
+        
             word.setValue(englishWord, forKey: "english")
             word.setValue(norwegianWord, forKey: "norwegian")
+            
+            do {
+                try managedContext.save()
+                words.append(word)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         }
     }
     
     func fetchData() {
+        var wordsDict = [String:String]()
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Word")
-        
         do {
-            let words: [Any] = try managedContext.fetch(fetchRequest)
-            for word in words {
-                print(word)
-            }
+            words = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
-            print("Could not fetch. \(error)")
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
+        
+        for word in words {
+            if let english = word.value(forKey: "english") as! String?, let norwegian = word.value(forKey: "norwegian") as! String? {
+                    wordsDict[english] = norwegian
+            }
+        }
+        print(wordsDict)
     }
     
     // MARK: UITextField methods
@@ -95,3 +109,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 }
+
