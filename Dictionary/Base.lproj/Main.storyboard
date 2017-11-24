@@ -70,27 +70,46 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="vTG-Si-ysU">
-                                <rect key="frame" x="102" y="441.5" width="170" height="34"/>
+                                <rect key="frame" x="82" y="441.5" width="210" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-xg-eVe">
-                                        <rect key="frame" x="0.0" y="0.0" width="55" height="34"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-xg-eVe">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="70"/>
                                         <color key="backgroundColor" red="0.15277239679999999" green="0.2840879858" blue="0.9696003795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="24" maxX="10" maxY="24"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="contentEdgeInsets.bottom">
+                                                <integer key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="contentEdgeInsets.top">
+                                                <integer key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="saveWordsToDictionary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5LT-Ha-2Vu"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyk-TS-qoL">
-                                        <rect key="frame" x="115" y="0.0" width="55" height="34"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyk-TS-qoL">
+                                        <rect key="frame" x="135" y="0.0" width="75" height="70"/>
                                         <color key="backgroundColor" red="0.15277239679999999" green="0.2840879858" blue="0.9696003795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="tintColor" red="0.19502317999999999" green="0.17502678399999999" blue="0.42137928299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="24" maxX="10" maxY="24"/>
                                         <state key="normal" title=" Fetch ">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="fetchDataFromDictionary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5yS-Hf-yIL"/>
                                         </connections>

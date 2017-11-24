@@ -25,8 +25,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         englishTextField.delegate = self
         norwegianTextField.delegate = self
-        formatButton(saveButton)
-        formatButton(fetchButton)
     }
     
     // MARK: UIButton methods
@@ -34,7 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveWordsToDictionary(_ sender: UIButton) {
         guard let englishWord = englishTextField.text, let norwegianWord =
             norwegianTextField.text, englishWord != "", norwegianWord != "" else {
-                sendAlert(title: "Empty text field", message: "Please type a word into all text fields", buttonTitle: "OK")
+                sendAlert(title: "Empty text field", message: "Please type a word into all text fields")
                 return
         }
         update(englishWord, norwegianWord)
@@ -47,37 +45,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         fetchData()
     }
     
-    func formatButton(_ button: UIButton) {
-        button.contentEdgeInsets.bottom = 24
-        button.contentEdgeInsets.top = 24
-        button.contentEdgeInsets.left = 10
-        button.contentEdgeInsets.right = 10
-        button.layer.cornerRadius = 35
-    }
-    
     // MARK: Method to send an alert
     
-    func sendAlert(title: String, message: String, buttonTitle: String) {
+    func sendAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .`default`, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .`default`, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: CoreData methods
     
-    func save(_ englishWord: String, _ norwegianWord: String) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
+    func setContext() -> NSManagedObjectContext? {
+        if let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate {
+            return appDelegate.persistentContainer.viewContext
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        if let entity =
+        return nil
+    }
+    
+    func save(_ englishWord: String, _ norwegianWord: String) {
+        if let managedContext = setContext(), let entity =
             NSEntityDescription.entity(forEntityName: "Word",
                                        in: managedContext) {
             let word = NSManagedObject(entity: entity,
                                        insertInto: managedContext)
-        
+            
             word.setValue(englishWord, forKey: "english")
             word.setValue(norwegianWord, forKey: "norwegian")
             
@@ -91,19 +83,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func update(_ englishWord: String, _ norwegianWord: String) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         for word in words {
-            if let english = word.value(forKey: "english") as! String?, let norwegian = word.value(forKey: "norwegian") as! String? {
+            if let englishSaved = word.value(forKey: "english") as! String?, let norwegianSaved = word.value(forKey: "norwegian") as! String?, let managedContext = setContext() {
                 
-                if english == englishWord || norwegian == norwegianWord {
+                if englishSaved == englishWord || norwegianSaved == norwegianWord {
                     word.setValue(englishWord, forKey: "english")
                     word.setValue(norwegianWord, forKey: "norwegian")
-                    sendAlert(title: "Word Update", message: "This word was updated", buttonTitle: "OK")
+                    sendAlert(title: "Word Update", message: "This word was updated")
                     
                     do {
                         try managedContext.save()
@@ -128,12 +114,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         for word in words {
-            if let english = word.value(forKey: "english") as! String?, let norwegian = word.value(forKey: "norwegian") as! String? {
-                wordsDict[english] = norwegian
+            if let englishSaved = word.value(forKey: "english") as! String?, let norwegianSaved = word.value(forKey: "norwegian") as! String? {
+                wordsDict[englishSaved] = norwegianSaved
+            }
         }
-    }
         print(wordsDict)
-}
+    }
     
     // MARK: UITextField methods
     
