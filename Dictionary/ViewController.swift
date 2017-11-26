@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Method to send an alert
     
-    func sendAlert(title: String, message: String) {
+    private func sendAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .`default`, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: CoreData methods
     
-    func setContext() -> NSManagedObjectContext? {
+    private func setContext() -> NSManagedObjectContext? {
         if let appDelegate =
             UIApplication.shared.delegate as? AppDelegate {
             return appDelegate.persistentContainer.viewContext
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     
-    func save(_ vocabulary: Vocabulary) {
+    private func save(_ vocabulary: Vocabulary) {
         if let managedContext = setContext(), let entity =
             NSEntityDescription.entity(forEntityName: "Word",
                                        in: managedContext) {
@@ -93,7 +93,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func update(_ vocabulary: Vocabulary) {
+    private func update(_ vocabulary: Vocabulary) {
         for word in words {
             if let englishSaved = word.value(forKey: "english") as! String?, let norwegianSaved = word.value(forKey: "norwegian") as! String?, let managedContext = setContext() {
                 
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func fetchData() {
+    private func fetchData() {
         var wordsDict = [String:String]()
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest =
