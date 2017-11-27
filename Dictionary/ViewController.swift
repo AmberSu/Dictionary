@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var words: [NSManagedObject] = []
     
-    class Vocabulary {
+    class Word {
         var english: String
         var norwegian: String
         
@@ -44,10 +44,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 sendAlert(title: "Empty text field", message: "Please type a word into all text fields")
                 return
         }
-        let vocabulary = Vocabulary(english: englishTextField.text!, norwegian: norwegianTextField.text!)
+        let dictionaryWord = Word(english: englishTextField.text!, norwegian: norwegianTextField.text!)
         
-        update(vocabulary)
-        save(vocabulary)
+        update(dictionaryWord)
+        save(dictionaryWord)
         englishTextField.text = ""
         norwegianTextField.text = ""
     }
@@ -74,15 +74,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     
-    private func save(_ vocabulary: Vocabulary) {
+    private func save(_ dictionaryWord: Word) {
         if let managedContext = setContext(), let entity =
-            NSEntityDescription.entity(forEntityName: "Word",
+            NSEntityDescription.entity(forEntityName: "Dictionary",
                                        in: managedContext) {
             let word = NSManagedObject(entity: entity,
                                        insertInto: managedContext)
             
-            word.setValue(vocabulary.english, forKey: "english")
-            word.setValue(vocabulary.norwegian, forKey: "norwegian")
+            word.setValue(dictionaryWord.english, forKey: "english")
+            word.setValue(dictionaryWord.norwegian, forKey: "norwegian")
             
             do {
                 try managedContext.save()
@@ -93,13 +93,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func update(_ vocabulary: Vocabulary) {
+    private func update(_ dictionaryWord: Word) {
         for word in words {
             if let englishSaved = word.value(forKey: "english") as! String?, let norwegianSaved = word.value(forKey: "norwegian") as! String?, let managedContext = setContext() {
                 
-                if englishSaved == vocabulary.english || norwegianSaved == vocabulary.norwegian {
-                    word.setValue(vocabulary.english, forKey: "english")
-                    word.setValue(vocabulary.norwegian, forKey: "norwegian")
+                if englishSaved == dictionaryWord.english || norwegianSaved == dictionaryWord.norwegian {
+                    word.setValue(dictionaryWord.english, forKey: "english")
+                    word.setValue(dictionaryWord.norwegian, forKey: "norwegian")
                     sendAlert(title: "Word Update", message: "This word was updated")
                     
                     do {
@@ -117,7 +117,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var wordsDict = [String:String]()
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Word")
+            NSFetchRequest<NSManagedObject>(entityName: "Dictionary")
         do {
             words = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
