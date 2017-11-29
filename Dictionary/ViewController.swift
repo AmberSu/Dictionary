@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+
+var words: [NSManagedObject] = []
+var wordsDict = [String:String]()
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var englishTextField: UITextField!
@@ -18,18 +22,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var fetchButton: UIButton!
-    
-    var words: [NSManagedObject] = []
-    
-    class Word {
-        var english: String
-        var norwegian: String
-        
-        init(english: String, norwegian: String) {
-            self.english = english
-            self.norwegian = norwegian
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func fetchDataFromDictionary(_ sender: UIButton) {
+        performSegue(withIdentifier: "segue", sender: self)
         fetchData()
     }
     
@@ -114,12 +107,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func fetchData() {
-        var wordsDict = [String:String]()
-        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let managedContext = setContext()
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Dictionary")
         do {
-            words = try managedContext.fetch(fetchRequest)
+            words = (try managedContext?.fetch(fetchRequest))!
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }

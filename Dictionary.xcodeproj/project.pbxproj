@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2257577C1FCEBA76007C8D7E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257577B1FCEBA76007C8D7E /* SecondViewController.swift */; };
+		2257577E1FCEBB12007C8D7E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257577D1FCEBB12007C8D7E /* TableViewCell.swift */; };
+		225757801FCEFD82007C8D7E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257577F1FCEFD82007C8D7E /* Word.swift */; };
 		225F23641FC576EE00FADB8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225F23631FC576EE00FADB8A /* AppDelegate.swift */; };
 		225F23661FC576EE00FADB8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225F23651FC576EE00FADB8A /* ViewController.swift */; };
 		225F23691FC576EE00FADB8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225F23671FC576EE00FADB8A /* Main.storyboard */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2257577B1FCEBA76007C8D7E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		2257577D1FCEBB12007C8D7E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		2257577F1FCEFD82007C8D7E /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		225F23601FC576EE00FADB8A /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		225F23631FC576EE00FADB8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225F23651FC576EE00FADB8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,12 +63,15 @@
 			isa = PBXGroup;
 			children = (
 				225F23631FC576EE00FADB8A /* AppDelegate.swift */,
-				225F23651FC576EE00FADB8A /* ViewController.swift */,
-				225F23671FC576EE00FADB8A /* Main.storyboard */,
-				225F236D1FC576EE00FADB8A /* Assets.xcassets */,
-				225F236F1FC576EE00FADB8A /* LaunchScreen.storyboard */,
-				225F23721FC576EE00FADB8A /* Info.plist */,
 				225F236A1FC576EE00FADB8A /* Dictionary.xcdatamodeld */,
+				2257577F1FCEFD82007C8D7E /* Word.swift */,
+				2257577D1FCEBB12007C8D7E /* TableViewCell.swift */,
+				225F23651FC576EE00FADB8A /* ViewController.swift */,
+				2257577B1FCEBA76007C8D7E /* SecondViewController.swift */,
+				225F23671FC576EE00FADB8A /* Main.storyboard */,
+				225F236F1FC576EE00FADB8A /* LaunchScreen.storyboard */,
+				225F236D1FC576EE00FADB8A /* Assets.xcassets */,
+				225F23721FC576EE00FADB8A /* Info.plist */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -139,9 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2257577E1FCEBB12007C8D7E /* TableViewCell.swift in Sources */,
+				2257577C1FCEBA76007C8D7E /* SecondViewController.swift in Sources */,
 				225F236C1FC576EE00FADB8A /* Dictionary.xcdatamodeld in Sources */,
 				225F23661FC576EE00FADB8A /* ViewController.swift in Sources */,
 				225F23641FC576EE00FADB8A /* AppDelegate.swift in Sources */,
+				225757801FCEFD82007C8D7E /* Word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
